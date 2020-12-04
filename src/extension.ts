@@ -85,11 +85,6 @@ const startAutoInstalls = () => {
       outputToConsole(err);
       vscode.window.showErrorMessage(`Auto Installer error: ${err}`);
     });
-
-    autoInstall.on("close", (code: string) => {
-      outputToConsole("closing " + code);
-      vscode.window.showInformationMessage("Auto Installer Stopped");
-    });
   });
 };
 
