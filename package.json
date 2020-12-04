@@ -10,14 +10,27 @@
   "engines": {
     "vscode": "^1.51.0"
   },
+  "keywords": [
+    "auto install",
+    "dependencies",
+    "modules",
+    "install"
+  ],
   "categories": [
     "Other"
   ],
   "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:vue-html",
+    "onLanguage:vue",
+    "onLanguage:json",
     "workspaceContains:package.json",
-    "onCommand:extension.start",
-    "onCommand:extension.stop"
+    "onCommand:autoInstaller.start",
+    "onCommand:autoInstaller.stop"
   ],
+  "qna": false,
+  "icon": "icon.png",
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
