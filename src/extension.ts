@@ -1,7 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { spawn, exec } from "child_process";
+import { spawn, execSync } from "child_process";
+// import whichpm = require("../node_modules/which-pm");
 
 type AutoInstallsOptions = {
   [key: string]: any;
@@ -34,22 +35,15 @@ const startAutoInstalls = () => {
   autoStart = true;
   vscode.window.showInformationMessage("Starting Auto Install");
 
-  getWorkspacePaths()?.forEach((workspace: string) => {
+  getWorkspacePaths()?.forEach(async (workspace: string) => {
     let showParseError = true;
 
     if (autoInstalls[workspace] !== null) {
       stopAutoInstall(workspace);
     }
 
-    const autoinstallURL = "https://github.com/ceafive/auto-install.git";
+    const autoInstall = spawn(`auto-install`, args, { cwd: workspace });
 
-    exec(`npm install -D ${autoinstallURL}`);
-
-    const autoInstall = spawn(
-      `${__dirname}/node_modules/auto-install/lib/index.js`,
-      args,
-      { cwd: workspace }
-    );
     autoInstalls[workspace] = autoInstall;
 
     autoInstall.stdout.on("data", (data: string) => {
@@ -101,6 +95,9 @@ export function activate(context: vscode.ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
   console.log('"Auto-install" is now active!');
+
+  const autoinstallURL = "https://github.com/ceafive/auto-install.git";
+  execSync(`npm install -g ${autoinstallURL}`, { encoding: "utf8" });
 
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
