@@ -1,9 +1,11 @@
 # Change Log
 
-All notable changes to the "auto-installer" extension will be documented in this file.
+## [1.2.1] - 2020-12-04
+- Rewritten with TypeScript
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [1.0.1]
+- Display parsing errors
 
-## [Unreleased]
+### 1.0.0
 
 - Initial release

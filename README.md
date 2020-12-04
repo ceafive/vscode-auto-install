@@ -24,8 +24,13 @@ Only requires `ceafive/auto-install`. This module will be installed automaticall
 
 This extension contributes the following settings:
 
-* `autoInstaller.secure`: if true, only install packages with >10k monthly downloads. see `auto-install` secure flag
-* `autoInstaller.startOnLaunch`: starts auto install if workspace has package.json in the root if true
+* `autoInstaller.startOnLaunch`: Starts Auto Installer automatically if workspace has `package.json` in the root. Default: `false`
+
+* `autoInstaller.secure`: If set to `true`, Auto Installer will only install packages with >10k monthly downloads. see `ceafive\auto-install` secure flag. Default: `false`
+
+* `autoInstaller.notify`: If set to false, Auto Installer will not show notifications for installed or uninstalled packages. Default: `true` 
+
+* `autoInstaller.uninstall`: If set to true, Auto Installer will not show automatically uninstall packages when they are removed from code. Default: `false` 
 
 ## Known Issues
 

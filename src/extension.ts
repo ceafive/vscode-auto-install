@@ -23,17 +23,29 @@ const getWorkspacePaths = () =>
 
 vscode.workspace.onDidChangeWorkspaceFolders(startIfNeeded);
 
-const startAutoInstalls = () => {
-  const args: string[] = [];
-  if (vscode.workspace.getConfiguration("autoInstaller").secure) {
-    args.push("--secure");
+const grabUserConfig = (config: string) => {
+  let arg: string = "";
+  if (vscode.workspace.getConfiguration("autoInstaller").config) {
+    arg = `--${config}`;
+  } else {
+    arg = `--no-${config}`;
   }
 
-  const outputConsole = vscode.window.createOutputChannel("Auto Install");
+  return arg;
+};
+
+const startAutoInstalls = () => {
+  const args: string[] = [
+    grabUserConfig("secure"),
+    grabUserConfig("notify"),
+    grabUserConfig("uninstall"),
+  ];
+
+  const outputConsole = vscode.window.createOutputChannel("Auto Installer");
   const outputToConsole = (data: string) => outputConsole.appendLine(data);
 
   autoStart = true;
-  vscode.window.showInformationMessage("Starting Auto Install");
+  vscode.window.showInformationMessage("Starting Auto Installer");
 
   getWorkspacePaths()?.forEach(async (workspace: string) => {
     let showParseError = true;
@@ -60,18 +72,19 @@ const startAutoInstalls = () => {
 
       outputToConsole("info: " + data);
     });
+
     autoInstall.stderr.on("data", (data: string) =>
       outputToConsole("error: " + data)
     );
 
     autoInstall.on("error", (err: string) => {
       outputToConsole(err);
-      vscode.window.showErrorMessage(`Auto Install error: ${err}`);
+      vscode.window.showErrorMessage(`Auto Installer error: ${err}`);
     });
 
     autoInstall.on("close", (code: string) => {
       outputToConsole("closing " + code);
-      vscode.window.showInformationMessage("Auto Install Stopped");
+      vscode.window.showInformationMessage("Auto Installer Stopped");
     });
   });
 };
@@ -84,7 +97,7 @@ const stopAutoInstall = (workspace: string) => {
 };
 
 const stopAutoInstalls = () => {
-  vscode.window.showInformationMessage("Stopping Auto Install");
+  vscode.window.showInformationMessage("Stopping Auto Installer");
   getWorkspacePaths()?.forEach(stopAutoInstall);
   autoStart = false;
 };
