@@ -44,6 +44,7 @@ const startAutoInstalls = () => {
   const outputConsole = vscode.window.createOutputChannel("Auto Installer");
   const outputToConsole = (data: string) => outputConsole.appendLine(data);
 
+  outputToConsole("Current arguments passed");
   args.forEach((arg) => {
     outputToConsole(arg);
   });
