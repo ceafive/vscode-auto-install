@@ -2,7 +2,7 @@
   "name": "vscode-auto-installer",
   "displayName": "Auto Installer",
   "description": "Auto install npm packages as you type",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "repository": "ceafive/vscode-auto-install",
   "publisher": "ceafive",
   "homepage": "https://github.com/ceafive/vscode-auto-install/blob/main/README.md",
