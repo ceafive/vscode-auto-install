@@ -25,7 +25,7 @@ vscode.workspace.onDidChangeWorkspaceFolders(startIfNeeded);
 
 const grabUserConfig = (config: string) => {
   let arg: string = "";
-  if (vscode.workspace.getConfiguration("autoInstaller").config) {
+  if (vscode.workspace.getConfiguration("autoInstaller")["config"]) {
     arg = `--${config}`;
   } else {
     arg = `--no-${config}`;
