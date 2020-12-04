@@ -9,7 +9,7 @@ type AutoInstallsOptions = {
 };
 
 const autoInstalls: AutoInstallsOptions = {};
-const config = vscode.workspace.getConfiguration("autoInstall");
+const config = vscode.workspace.getConfiguration("autoInstaller");
 let autoStart = config.startOnLaunch;
 
 const startIfNeeded = () => {
@@ -25,7 +25,7 @@ vscode.workspace.onDidChangeWorkspaceFolders(startIfNeeded);
 
 const startAutoInstalls = () => {
   const args: string[] = [];
-  if (vscode.workspace.getConfiguration("autoInstall").secure) {
+  if (vscode.workspace.getConfiguration("autoInstaller").secure) {
     args.push("--secure");
   }
 
@@ -113,7 +113,7 @@ export function activate(context: vscode.ExtensionContext) {
     },
   ].forEach(({ command, name }) => {
     const commandToRegister = vscode.commands.registerCommand(
-      `auto-install.${name}`,
+      `autoInstaller.${name}`,
       command
     );
     context.subscriptions.push(commandToRegister);

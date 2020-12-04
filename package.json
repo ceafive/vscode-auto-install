@@ -1,8 +1,11 @@
 {
   "name": "auto-installer",
-  "displayName": "Auto Install",
+  "displayName": "Auto Installer",
   "description": "Auto install npm packages as you type",
-  "version": "0.0.1",
+  "version": "1.2.1",
+  "repository": "ceafive/vscode-auto-install",
+  "publisher": "ceafive",
+  "homepage": "https://github.com/ceafive/vscode-auto-install/blob/main/README.md",
   "license": "MIT",
   "engines": {
     "vscode": "^1.51.0"
@@ -19,11 +22,11 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.start",
+        "command": "autoInstaller.start",
         "title": "Auto Install: Start"
       },
       {
-        "command": "extension.stop",
+        "command": "autoInstaller.stop",
         "title": "Auto Install: Stop"
       }
     ]

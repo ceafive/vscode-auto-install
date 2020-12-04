@@ -1,65 +1,44 @@
-# auto-installer README
+# Auto Installer for VS Code
 
-This is the README for your extension "auto-installer". After writing up a brief description, we recommend including the following sections.
+This is a VS Code extenstion to start and stop `ceafive/auto-install` which installs and erases dependencies as you write your code.
+
+## Usage
+Run the 'Start Auto Installer' command or set the autoInstaller.startOnLaunch to `true` in the configuration
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Installs or uninstalls dependencies as you type. It installs dependencies that are found in `*.test.js` or `*.spec.js` under `devDependencies`
 
-For example if there is an image subfolder under your extension project workspace:
+![Auto installs dependencies as you code](https://raw.githubusercontent.com/siddharthkp/auto-install/master/demo.gif)
 
-\!\[feature X\]\(images/feature-x.png\)
+Starts by default when it detects package.json in the root if autoInstall.startOnLaunch is true.
+By default installs only packages that have >10k monthly downloads.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Checkout `ceafive/auto-install` for the details.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Only requires `ceafive/auto-install`. This module will be installed automatically globally.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+* `autoInstaller.secure`: if true, only install packages with >10k monthly downloads. see `auto-install` secure flag
+* `autoInstaller.startOnLaunch`: starts auto install if workspace has package.json in the root if true
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Cannot be used in a repo with multiple `package.json` files. Will be fixed soon.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+## [1.2.1]
+Rewritten with TypeScript
+
+## [1.0.1]
+Display parsing errors
 
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release
